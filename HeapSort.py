@@ -3,10 +3,13 @@
 #
 
 def remove_min(L):
-  del L[0]
-  L.insert(0, L[(len(L) - 1)])
-  del L[(len(L) - 1)]
-  down_heapify(L, 0)
+  if len(L) == 1:
+    del L[0]
+  else:
+    del L[0]
+    L.insert(0, L[(len(L) - 1)])
+    del L[(len(L) - 1)]
+    down_heapify(L, 0)
 
   return L
 
@@ -61,11 +64,12 @@ def build_heap(L):
         down_heapify(L, i)
     return L
 
-def test():
-    L = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-    build_heap(L)
-    remove_min(L) 
-    # now, the new minimum should be 1
-    assert L[0] == 1
+def heap_sort(L):
+  build_heap(L)
+  while len(L) > 0:
+    print (L[0])
+    remove_min(L)
 
-test()
+L = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+heap_sort(L)
